@@ -1,0 +1,100 @@
+[
+    {
+        "id": 1,
+        "name": "Naturela sa Rogačem i Agava Šećerom",
+        "price": 546,
+        "quantity": "750g",
+        "priceBy": "546 RSD po kom.",
+        "prevPrice": 756,
+        "image": "granumfood_puteri3.svg"
+    },
+    {
+        "id": 2,
+        "name": "Naturela sa Rogačem i Agava Šećerom",
+        "quantity": "750g",
+        "price": 546,
+        "prevPrice": 756,
+        "image": "granumfood_puteri2.svg"
+    },
+    {
+        "id": 3,
+        "name": "Naturela sa Rogačem i Agava Šećerom",
+        "quantity": "750g",
+        "price": 546,
+        "prevPrice": 756,
+        "image": "granumfood_puteri1.svg"
+    },
+    {
+        "id": 4,
+        "name": "Naturela sa Rogačem i Agava Šećerom",
+        "quantity": "750g",
+        "price": 546,
+        "prevPrice": 756,
+        "image": "granumfood_puteri.svg"
+    },
+    {
+        "id": 5,
+        "name": "Naturela sa Rogačem i Agava Šećerom",
+        "quantity": "750g",
+        "price": 546,
+        "prevPrice": null,
+        "image": "granumfood_puteri3.svg"
+    },
+    {
+        "id": 11,
+        "name": "Naturela sa Rogačem i Agava Šećerom",
+        "price": 546,
+        "quantity": "750g",
+        "priceBy": "546 RSD po kom.",
+        "prevPrice": 756,
+        "image": "granumfood_puteri3.svg"
+    },
+    {
+        "id": 21,
+        "name": "Naturela sa Rogačem i Agava Šećerom",
+        "quantity": "750g",
+        "price": 546,
+        "prevPrice": 756,
+        "image": "granumfood_puteri2.svg"
+    },
+    {
+        "id": 31,
+        "name": "Naturela sa Rogačem i Agava Šećerom",
+        "quantity": "750g",
+        "price": 546,
+        "prevPrice": 756,
+        "image": "granumfood_puteri1.svg"
+    },
+    {
+        "id": 41,
+        "name": "Naturela sa Rogačem i Agava Šećerom",
+        "quantity": "750g",
+        "price": 546,
+        "prevPrice": 756,
+        "image": "granumfood_puteri.svg"
+    },
+    {
+        "id": 52,
+        "name": "Naturela sa Rogačem i Agava Šećerom",
+        "quantity": "750g",
+        "price": 546,
+        "prevPrice": null,
+        "image": "granumfood_puteri3.svg"
+    },
+    {
+        "id": 23,
+        "name": "Naturela sa Rogačem i Agava Šećerom",
+        "quantity": "750g",
+        "price": 546,
+        "prevPrice": 756,
+        "image": "granumfood_puteri2.svg"
+    },
+    {
+        "id": 34,
+        "name": "Naturela sa Rogačem i Agava Šećerom",
+        "quantity": "750g",
+        "price": 546,
+        "prevPrice": 756,
+        "image": "granumfood_puteri1.svg"
+    }
+]
