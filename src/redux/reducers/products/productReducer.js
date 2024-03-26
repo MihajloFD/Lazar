@@ -23,6 +23,8 @@ export const cart = (state = [], action) => {
 };
 
 
+
+
 const productReducer = combineReducers({ productList, cart });
 
 export default productReducer;

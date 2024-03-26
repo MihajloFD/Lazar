@@ -10,12 +10,14 @@ import Profile from '../../pages/Profile/Profile';
 import { PrivateRoute } from '../../components/PrivateRoute/PrivateRoute';
 import { homeURL, profileURL } from '../../constants/pagesRoute';
 import { NotFound } from '../../components/PageNotFound/PageNotFound';
+import { Board } from '../../pages/Board/Board';
 
 export const Navigation = () => {
   const isAuthenticated = useSelector(authSelector).user
   return (
     <Router>
       <Routes>
+      <Route path={homeURL} element={<Board />} />
         <Route path={homeURL} element={<Login />} />
         <Route path={profileURL}
           element={
