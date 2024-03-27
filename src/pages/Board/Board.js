@@ -9,21 +9,39 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import { useDispatch } from "react-redux";
 
 
-
 export const Board = () => {
-    const toDoList = useSelector(toDoSelector);
-    const inProgressList = useSelector(inProgressSelector);
-    const doneList = useSelector(doneSelector);
-    const dispatch = useDispatch();
- return (
-    <div style={{display : "flex"}}>
-       <DndProvider backend={HTML5Backend}>
-        <TaskList list={toDoList} createList={setToDo} title={"To do"}/>
-        <TaskList list={inProgressList} createList={setInProgress} title={"In progress"}/>
-        <TaskList list={doneList} createList={setDone} title={"Done"}/>
-       </DndProvider>
-    </div>
- )
-    
- 
+   const toDoList = useSelector(toDoSelector);
+   const inProgressList = useSelector(inProgressSelector);
+   const doneList = useSelector(doneSelector);
+   const dispatch = useDispatch();
+   const lists = {
+      'To do': { listName: 'To do', list: toDoList, methode: setToDo },
+      'In progress': { listName: 'In progress', list: inProgressList, methode: setInProgress },
+      'Done': { listName: 'Done', list: doneList, methode: setDone }
+   }
+
+   const dragList = ({ id, currentListId, prevListId }) => {
+      console.log('id, currentListId, prevListId', id, currentListId, prevListId)
+
+      if (lists[currentListId]) {
+         const cuEl = lists[prevListId].list.find(item => item.id === Number(id))
+         const cuLi = [...lists[currentListId].list, cuEl];
+         dispatch(lists[currentListId].methode(cuLi))
+      }
+      if (lists[prevListId]) {
+         const culill = lists[prevListId].list.filter(item => item.id !== Number(id))
+         dispatch(lists[prevListId].methode(culill));
+      }
+   }
+   return (
+      <div style={{ display: "flex" }}>
+         <DndProvider backend={HTML5Backend}>
+            <TaskList list={toDoList} createList={setToDo} title={"To do"} dragList={dragList} />
+            <TaskList list={inProgressList} createList={setInProgress} title={"In progress"} dragList={dragList} />
+            <TaskList list={doneList} createList={setDone} title={"Done"} dragList={dragList} />
+         </DndProvider>
+      </div>
+   )
+
+
 };
