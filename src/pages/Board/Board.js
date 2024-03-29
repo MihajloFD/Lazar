@@ -3,9 +3,7 @@ import { useSelector } from "react-redux";
 
 import { TaskList } from "../../components/TaskList/TaskList";
 import { setDone, setInProgress, setToDo } from "../../redux/actions/board/boardAction";
-import { doneSelector, inProgressSelector, toDoSelector } from "../../redux/selectors/board/boardSelector";
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
+import { doneSelector, inProgressSelector, taskListsSelector, tasksSelector, toDoSelector } from "../../redux/selectors/board/boardSelector";
 import { useDispatch } from "react-redux";
 
 
@@ -13,6 +11,10 @@ export const Board = () => {
    const toDoList = useSelector(toDoSelector);
    const inProgressList = useSelector(inProgressSelector);
    const doneList = useSelector(doneSelector);
+   const taskLists = useSelector(taskListsSelector);
+   const tasks = useSelector(tasksSelector);
+
+
    const dispatch = useDispatch();
    const lists = {
       'To do': { listName: 'To do', list: toDoList, methode: setToDo },
@@ -33,13 +35,17 @@ export const Board = () => {
          dispatch(lists[prevListId].methode(culill));
       }
    }
+
+   function renderTaskList(list) {
+            return <TaskList key={list.id} list={list} tasks={tasks.filter(task => task.taskListId === list.id)} />
+   }
+
    return (
       <div style={{ display: "flex" }}>
-         <DndProvider backend={HTML5Backend}>
-            <TaskList list={toDoList} createList={setToDo} title={"To do"} dragList={dragList} />
+         {taskLists.map(renderTaskList)}
+            {/* <TaskList list={toDoList} createList={setToDo} title={"To do"} dragList={dragList} />
             <TaskList list={inProgressList} createList={setInProgress} title={"In progress"} dragList={dragList} />
-            <TaskList list={doneList} createList={setDone} title={"Done"} dragList={dragList} />
-         </DndProvider>
+            <TaskList list={doneList} createList={setDone} title={"Done"} dragList={dragList} /> */}
       </div>
    )
 

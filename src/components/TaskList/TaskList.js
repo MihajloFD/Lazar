@@ -10,7 +10,7 @@ font-size: 20px;
 
 
 
-export const TaskList = ({ list, createList, title, dragList }) => {
+export const TaskList = ({ list, tasks, createList, title, dragList }) => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [description, setDescription] = useState("");
   const [id, setId] = useState(0);
@@ -88,7 +88,7 @@ export const TaskList = ({ list, createList, title, dragList }) => {
       )}
       <div style={{ padding: "20px", margin: "10px", background: "#1A92DB" }}>
         <div>
-          <h3>{title}</h3>
+          <h3>{list.listName}</h3>
           <ModalButton onClick={toggleModal}>+</ModalButton>
           <div>({list.length})</div>
         </div>

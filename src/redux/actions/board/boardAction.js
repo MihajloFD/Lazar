@@ -1,4 +1,4 @@
-import { SET_TO_DO, SET_DONE, SET_IN_PROGRESS } from "../../constants/boardConstants";
+import { SET_TO_DO, SET_DONE, SET_IN_PROGRESS, SET_TASK_LISTS } from "../../constants/boardConstants";
 
 export const setToDo= data => ({
     type: SET_TO_DO,
@@ -12,5 +12,10 @@ export const setToDo= data => ({
 
   export const setDone= data => ({
     type: SET_DONE,
+    payload: data
+  });
+
+  export const setTaskLists = data => ({
+    type: SET_TASK_LISTS,
     payload: data
   });
