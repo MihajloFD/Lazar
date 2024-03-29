@@ -1,6 +1,7 @@
 import {
   SET_TASKS,
-  SET_TASK_LISTS
+  SET_TASK_LISTS,
+  SET_TASK_ID
 } from '../../constants/boardConstants';
 import { combineReducers } from 'redux';
 
@@ -34,10 +35,19 @@ export const taskLists = (state = initialState, action) => {
   }
 };
 
+export const taskId = (state = 0, action) => {
+  switch (action.type) {
+    case SET_TASK_ID:
+      return action.payload;
+    default:
+      return state;
+  }
+};
 
 
 
 
-const boardReducer = combineReducers({ taskLists, tasks });
+
+const boardReducer = combineReducers({ taskLists, tasks, taskId });
 
 export default boardReducer;

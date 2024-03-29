@@ -2,14 +2,16 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 import { TaskList } from "../../components/TaskList/TaskList";
-import { setTasks } from "../../redux/actions/board/boardAction";
-import { taskListsSelector, tasksSelector } from "../../redux/selectors/board/boardSelector";
+import { setTasks, setTaskId } from "../../redux/actions/board/boardAction";
+import { taskIdSelector, taskListsSelector, tasksSelector } from "../../redux/selectors/board/boardSelector";
 import { useDispatch } from "react-redux";
 
 
-export function Board() {
+export const Board = () => {
    const taskLists = useSelector(taskListsSelector);
    const tasks = useSelector(tasksSelector);
+   const taskId = useSelector(taskIdSelector);
+
 
 
    const dispatch = useDispatch();
@@ -20,21 +22,24 @@ export function Board() {
          editTask({ ...task, taskListId })
       }
    }
-
-   function addTask(task) {
+   const handleSetTaskId = (id) => {
+      dispatch(setTaskId(id))
+   }
+   const addTask = (task) => {
       dispatch(setTasks([...tasks, task]))
    }
-   function editTask(task) {
+   const editTask = (task) => {
       const li = tasks.filter(item => item.id !== task.id)
       dispatch(setTasks([...li, task]));
    }
-   function deleteTask(id) {
+   const deleteTask =(id) => {
       const li = tasks.filter(item => item.id !== id)
       dispatch(setTasks(li));
    }
 
-   function renderTaskList(list) {
-      return <TaskList
+   const renderTaskList= (list) => {
+      return (
+      <TaskList
          key={list.id}
          list={list}
          tasks={tasks.filter(task => task.taskListId === list.id)}
@@ -42,7 +47,9 @@ export function Board() {
          editTask={editTask}
          deleteTask={deleteTask}
          dragTask={dragTask}
-      />
+         handleSetTaskId={handleSetTaskId}
+         taskId={taskId}
+      />)
    }
 
    return (

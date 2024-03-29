@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { styled } from "styled-components";
 import { Modal } from "../../components/Modal/Modal";
 import { useInput } from "../../hooks/useInput";
@@ -10,50 +10,48 @@ font-size: 20px;
 
 
 
-export function TaskList({ list, tasks, title, dragTask, addTask, editTask, deleteTask }) {
+export const TaskList = ({ list, tasks, handleSetTaskId, dragTask, addTask, editTask, deleteTask, taskId }) => {
+  
+  console.log('list', list)
   const description = useInput('');
-  console.log('desc', description);
-  const [id, setId] = useState(0);
 
-  function toggleModal() {
-    if (id) {
-      setId(0);
-      description.setValue("");
+  const toggleModal = () => {
+    if (taskId) {
+      handleSetTaskId(0);
+      description.setValue('');
     } else {
-      setId(Math.random())
+      handleSetTaskId(Math.random())
     }
   };
 
-  function handleDoubleClick(id) {
-    return function () {
-      setId(id);
+  const handleDoubleClick = (id) => () => {
+      handleSetTaskId(id);
       description.setValue(tasks.find(item => item.id === Number(id)).description)
-    }
   }
 
-  function createTask() {
-    if (tasks.find(item => item.id === id)) {
-      editTask({ id, description, taskListId: list.id })
+  const createTask = (listId) => () =>  {
+    if (tasks.find(item => item.id === taskId)) {
+      editTask({ id: taskId, description: description.value, taskListId: listId })
     } else {
-      addTask({ id, description, taskListId: list.id });
+      addTask({ id: taskId, description: description.value, taskListId: listId });
     }
-    description.setValue("");
-    setId(0);
+    description.setValue('');
+    handleSetTaskId(0);
   };
 
-  function handleOnDrag(e, id) {
+  const handleOnDrag = (e, id) => {
     e.dataTransfer.setData("id", id);
   }
 
-  function handleOnDragOver(e) {
+  const handleOnDragOver = (e) => {
     e.preventDefault();
   }
 
-  function handleOnDrop(e) {
+  const handleOnDrop = (e) => {
     dragTask({ id: e.dataTransfer.getData("id"), taskListId: list.id });
   }
 
-  function renderTasks(item) {
+  const renderTasks = (item) => {
     return (
       <div
         onDoubleClick={handleDoubleClick(item.id)}
@@ -72,10 +70,10 @@ export function TaskList({ list, tasks, title, dragTask, addTask, editTask, dele
 
   return (
     <>
-      {!!id && (
+      {!!taskId && (
         <Modal onClose={toggleModal}>
           <input placeholder="description" value={description.value} onChange={description.onChange} />
-          <button onClick={createTask} >{tasks.find(item => item.id === id) ? 'Edit' : 'Create'} task</button>
+          <button onClick={createTask(list.id)} >{tasks.find(item => item.id === taskId) ? 'Edit' : 'Create'} task</button>
         </Modal>
       )}
       <div style={{ padding: "20px", margin: "10px", background: "#1A92DB" }}>
